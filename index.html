@@ -19,8 +19,11 @@
 
         <script src="vendor/jquery/2.1.0/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
         <div class="box">
-            <!--<h3>请求地址：</h3>-->
-            <!--<input name="" id="url" rows="" cols=""></input>-->
+
+            <div class="top">
+                <h3>请求地址：</h3>
+                <input type="text" id="url" value="http://river.com/MIAOBELER/index.php/User/Public/test" placeholder="url"></input>
+            </div>
 
             <div class="left">
                 <h3>请求参数：
@@ -34,20 +37,32 @@
                 <h3>返回：
                     <button id="removeAll">清空 </button>
                 </h3>
-
                 <div class="fk" id="resultBox"></div>
             </div>
 
         </div>
         <script type="text/javascript">
+            $(function() {
+                var url = $('#url').val();
+                $.getJSON(url, {}, function(result) {
+                    $('#resultBox').html(result);
+                })
+            });
+
             $(document).on('click', '#test', function() {
                 var url = $('#url').val();
                 var postJson = $('#postJson').val();
 
                 if(postJson === '') {
 
-                    $.get(url, function(date) {
-                        $('#resultBox').html(date);
+                    $.getJSON(url, {}, function(result) {
+                        $('#resultBox').html(result);
+                    })
+
+                } else {
+
+                    $.getJSON(url, JSON.parse(postJson), function(result) {
+                        $('#resultBox').html(result);
                     })
 
                 }
