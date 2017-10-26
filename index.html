@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="dist/app/css/app.css" />
+
+        <title>接口测试</title>
+
+        <style type="text/css">
+
+        </style>
+    </head>
+
+    <body>
+
+        <script src="vendor/jquery/2.1.0/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <div class="box">
+            <!--<h3>请求地址：</h3>-->
+            <!--<input name="" id="url" rows="" cols=""></input>-->
+
+            <div class="left">
+                <h3>请求参数：
+                    <button id="test">请求</button>
+                </h3>
+                <textarea class="fk" id="postJson" placeholder="在此输入JSON参数"></textarea>
+
+            </div>
+
+            <div class="right">
+                <h3>返回：
+                    <button id="removeAll">清空 </button>
+                </h3>
+
+                <div class="fk" id="resultBox"></div>
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            $(document).on('click', '#test', function() {
+                var url = $('#url').val();
+                var postJson = $('#postJson').val();
+
+                if(postJson === '') {
+
+                    $.get(url, function(date) {
+                        $('#resultBox').html(date);
+                    })
+
+                }
+
+            })
+            $(document).on('click', '#removeAll', function() {
+                $('#resultBox').html('');
+            })
+        </script>
+    </body>
+
+</html>
